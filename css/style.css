@@ -1328,12 +1328,45 @@ footer.main-footer {
   background: rgba(15, 23, 42, 0.9);
   border: none !important;
   box-shadow: var(--shadow-dark);
+  text-align: center;
+  align-items: center;
 }
 
 .testimonial-card.single-testimonial:hover {
   border: none !important;
   border-color: transparent !important;
   transform: translateY(-2px);
+}
+
+.testimonial-card.single-testimonial .testimonial-top {
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.testimonial-card.single-testimonial .testimonial-quote {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 24px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.testimonial-card.single-testimonial .testimonial-author {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.testimonial-card.single-testimonial .author-info {
+  text-align: center;
 }
 
 .testimonial-dots {
