@@ -454,8 +454,12 @@
             <span class="dot" data-slide="2"></span>
             <span class="dot" data-slide="3"></span>
           </div>
+        </div>
+      </section>
 
-          <!-- Trust Metrics Counter -->
+      <!-- Trust Metrics & Institutional Statistics Counter Section -->
+      <section class="trust-metrics-section" id="trust-metrics">
+        <div class="container">
           <div class="trust-metrics-grid">
             <div class="trust-metric-item">
               <h3>$1.8B+</h3>
