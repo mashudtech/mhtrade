@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${prefix}-${randomSeq}`;
   }
 
-  // Background Canvas Node Network Simulation
+  // Dynamic Background Canvas — Global Financial Constellation Network
   function initBackgroundCanvas() {
     const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
@@ -249,51 +249,99 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
+    let mouse = { x: null, y: null, radius: 180 };
+
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     });
 
-    const numNodes = Math.min(Math.floor(width / 25), 45);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    // Create dynamic nodes based on screen resolution
+    const numNodes = Math.min(Math.floor(width / 18), 70);
     const nodes = [];
 
     for (let i = 0; i < numNodes; i++) {
+      const isMajorHub = Math.random() < 0.25;
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 2 + 1
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        radius: isMajorHub ? Math.random() * 2 + 2.5 : Math.random() * 1.5 + 1.2,
+        isMajorHub: isMajorHub,
+        pulseAngle: Math.random() * Math.PI * 2,
+        color: isMajorHub ? '#F59E0B' : '#D4AF37'
       });
     }
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
-      // Draw Nodes
+      // Draw & update nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.x += n.vx;
         n.y += n.vy;
+        n.pulseAngle += 0.03;
 
         if (n.x < 0 || n.x > width) n.vx *= -1;
         if (n.y < 0 || n.y > height) n.vy *= -1;
 
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(212, 175, 55, 0.4)';
-        ctx.fill();
+        // Pulse effect for major hub nodes
+        let currentRadius = n.radius;
+        if (n.isMajorHub) {
+          currentRadius += Math.sin(n.pulseAngle) * 0.8;
+        }
 
-        // Connect Nodes
+        // Draw node glow
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, Math.max(0.5, currentRadius), 0, Math.PI * 2);
+        ctx.fillStyle = n.isMajorHub ? 'rgba(245, 158, 11, 0.85)' : 'rgba(212, 175, 55, 0.65)';
+        if (n.isMajorHub) {
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = 'rgba(245, 158, 11, 0.7)';
+        }
+        ctx.fill();
+        ctx.restore();
+
+        // Connect node to mouse if within distance
+        if (mouse.x !== null && mouse.y !== null) {
+          const mDist = Math.hypot(n.x - mouse.x, n.y - mouse.y);
+          if (mDist < mouse.radius) {
+            const mAlpha = 0.5 * (1 - mDist / mouse.radius);
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(245, 158, 11, ${mAlpha})`;
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+          }
+        }
+
+        // Connect nodes to neighboring nodes
         for (let j = i + 1; j < nodes.length; j++) {
           const n2 = nodes[j];
           const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
-          if (dist < 140) {
+          const maxDist = 170;
+
+          if (dist < maxDist) {
+            const alpha = 0.45 * (1 - dist / maxDist);
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = `rgba(212, 175, 55, ${0.25 * (1 - dist / 140)})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(212, 175, 55, ${alpha})`;
+            ctx.lineWidth = n.isMajorHub && n2.isMajorHub ? 1.2 : 0.85;
             ctx.stroke();
           }
         }

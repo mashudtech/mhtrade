@@ -1,92 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MH Trade Capital Solutions — B2B Trade Finance, Commodity Sourcing & UAE Banking</title>
-  <meta name="description" content="Dubai-based B2B Trade Finance (LC / SBLC), Commodity Sourcing, Project Finance, and UAE Corporate Banking. High-converting global financial infrastructure platform.">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="MH-website-logo-package/MH-logo-icon-512.png">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Luxury Theme Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-  <!-- Animated Node Network Background -->
-  <canvas id="bg-canvas"></canvas>
-  <div class="hero-bg-overlay"></div>
-
-  <div class="app-wrapper">
-
-    <!-- Combined 100vh Viewport Wrapper (Top Bar + Header + Hero Section = 100vh) -->
-    <div class="hero-viewport-wrapper" id="hero-viewport" style="background-image: url('images/hero/dubai_hero_bg.png');">
-      <div class="hero-viewport-overlay"></div>
-
-      <!-- Top Contact Bar (N. Mohammad Group Style) -->
-      <div class="top-bar">
-        <div class="container top-bar-content">
-          <div class="top-bar-left">
-            <div class="top-item">
-              <i class="fas fa-location-dot"></i>
-              <span>Dubai, United Arab Emirates</span>
-            </div>
-            <div class="top-item">
-              <i class="fas fa-envelope"></i>
-              <a href="mailto:contact@mhtradecap.com">contact@mhtradecap.com</a>
-            </div>
-            <div class="top-item">
-              <i class="fab fa-whatsapp" style="color: #25D366;"></i>
-              <a href="https://wa.me/?text=Hello%20MH%20Trade%20Capital%20Solutions%20Team" target="_blank">+971 50 000 0000 (Dubai Direct Desk)</a>
-            </div>
-          </div>
-
-          <div class="top-bar-right">
-            <button class="btn-gold open-inquiry-modal btn-topbar" data-vertical="general">
-              <i class="fas fa-paper-plane"></i> Submit Requirement
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Navigation Header Placeholder Wrapper -->
-      <div class="main-header-wrapper">
-        <header class="main-header">
-          <div class="container navbar">
-            <a href="index.php" class="brand-logo-link">
-              <div class="brand-logo-img-box">
-                <img src="MH-website-logo-package/MH-logo-transparent.png" alt="MH Trade Capital Solutions Logo" class="brand-logo-img">
-              </div>
-              <div class="brand-logo-text">
-                <span class="brand-logo-row1">MH TRADE CAPITAL</span>
-                <span class="brand-logo-row2">SOLUTIONS</span>
-              </div>
-            </a>
-
-            <ul class="nav-links">
-              <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-              
-              <li class="nav-item">
-                <a href="#verticals" class="nav-link">Business Verticals <i class="fas fa-chevron-down" style="font-size: 10px;"></i></a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-item"><a href="#trade-finance" class="open-inquiry-modal" data-vertical="lc">Trade Finance (LC / SBLC / BG)</a></li>
-                  <li class="dropdown-item"><a href="#commodity" class="open-inquiry-modal" data-vertical="commodity">Commodity Sourcing (Energy/Agri/Metals)</a></li>
-                  <li class="dropdown-item"><a href="#project-finance" class="open-inquiry-modal" data-vertical="project">Project & Infrastructure Finance</a></li>
-                  <li class="dropdown-item"><a href="#uae-banking" class="open-inquiry-modal" data-vertical="uae-banking">UAE Business & Corporate Banking</a></li>
-                </ul>
-              </li>
-
-              <li class="nav-item"><a href="how-it-works.php" class="nav-link">How It Works</a></li>
-              <li class="nav-item"><a href="#why-mh" class="nav-link">Dubai Advantage</a></li>
-              <li class="nav-item"><a href="#contact" class="nav-link">Contact Desk</a></li>
-            </ul>
-          </div>
-        </header>
-      </div>
+<?php
+$pageTitle = "MH Trade Capital Solutions — B2B Trade Finance, Commodity Sourcing & UAE Banking";
+$pageDesc = "Dubai-based B2B Trade Finance (LC / SBLC), Commodity Sourcing, Project Finance, and UAE Corporate Banking. High-converting global financial infrastructure platform.";
+$activePage = "home";
+$isHeroViewport = true;
+include 'includes/header.php';
+?>
 
       <!-- Hero Content Section inside Viewport -->
       <section class="hero-section">
@@ -153,7 +71,68 @@
         </div>
       </section>
 
-      <!-- Core Business Verticals Showcase Section (Hybrid Grid-Slider) -->
+      <!-- About Us Showcase Section (Who We Are) -->
+      <section class="about-section" id="about-us">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-content-box">
+              <div class="section-subtitle">Who We Are</div>
+              <h2 class="section-title">Engineering Premier B2B Trade & Institutional Financial Facilitation</h2>
+              <p class="about-desc-text">
+                MH Trade Capital Solutions is a Dubai-based financial infrastructure and trade facilitation desk. We specialize in structuring institutional Letters of Credit (LC / DLC / SBLC), facilitating bulk commodity allocations, syndicating project capital, and setting up corporate banking for global clients.
+              </p>
+
+              <div class="about-highlights-grid">
+                <div class="about-highlight-card">
+                  <div class="about-highlight-icon"><i class="fas fa-building-columns"></i></div>
+                  <div class="about-highlight-info">
+                    <h4>Top Issuing Banks</h4>
+                    <p>Direct alignment with top-tier international banking channels.</p>
+                  </div>
+                </div>
+                <div class="about-highlight-card">
+                  <div class="about-highlight-icon"><i class="fas fa-user-shield"></i></div>
+                  <div class="about-highlight-info">
+                    <h4>Confidential Desk</h4>
+                    <p>Non-date reference IDs for complete client transaction privacy.</p>
+                  </div>
+                </div>
+                <div class="about-highlight-card">
+                  <div class="about-highlight-icon"><i class="fas fa-handshake"></i></div>
+                  <div class="about-highlight-info">
+                    <h4>Commodity Hub</h4>
+                    <p>Verified allocation holders for bulk energy, agri & metals.</p>
+                  </div>
+                </div>
+                <div class="about-highlight-card">
+                  <div class="about-highlight-icon"><i class="fas fa-bolt"></i></div>
+                  <div class="about-highlight-info">
+                    <h4>24-Hour SLA</h4>
+                    <p>Rapid term-sheet evaluation from our Dubai headquarters.</p>
+                  </div>
+                </div>
+              </div>
+
+              <a href="about-us.php" class="btn-gold" style="display: inline-flex;">
+                <i class="fas fa-building"></i> Read Full Corporate Profile <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="about-img-container">
+              <img src="images/about_us_dubai.png" alt="MH Trade Capital Solutions Boardroom Dubai" class="about-img">
+              <div class="about-experience-badge">
+                <div class="about-badge-icon"><i class="fas fa-award"></i></div>
+                <div class="about-badge-text">
+                  <h4>Dubai Financial Desk</h4>
+                  <p>Global Trade & Institutional Gateway</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Business Verticals Showcase Section (Our Core Capabilities) -->
       <section class="container verticals-section" id="verticals">
         <div class="section-header-wrapper">
           <div class="section-header text-left">
@@ -460,20 +439,29 @@
       <!-- Trust Metrics & Institutional Statistics Counter Section -->
       <section class="trust-metrics-section" id="trust-metrics">
         <div class="container">
+          <div class="section-header text-center">
+            <div class="section-subtitle">Institutional Track Record</div>
+            <h2 class="section-title">Proven Global Execution & Metrics</h2>
+            <p class="section-desc">Key performance benchmarks and trade facilitation volume executed directly through our Dubai operational desk.</p>
+          </div>
           <div class="trust-metrics-grid">
             <div class="trust-metric-item">
+              <div class="trust-metric-icon"><i class="fas fa-chart-line"></i></div>
               <h3>$1.8B+</h3>
               <p>Trade Volume Facilitated</p>
             </div>
             <div class="trust-metric-item">
+              <div class="trust-metric-icon"><i class="fas fa-globe"></i></div>
               <h3>45+</h3>
               <p>Global Trade Destinations</p>
             </div>
             <div class="trust-metric-item">
+              <div class="trust-metric-icon"><i class="fas fa-shield-halved"></i></div>
               <h3>99.4%</h3>
               <p>Compliance Execution Rate</p>
             </div>
             <div class="trust-metric-item">
+              <div class="trust-metric-icon"><i class="fas fa-clock"></i></div>
               <h3>24 Hours</h3>
               <p>Dubai Desk SLA Response</p>
             </div>
@@ -483,155 +471,4 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="main-footer" id="contact">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <a href="index.php" class="brand-logo-link" style="margin-bottom: 16px;">
-              <div class="brand-logo-img-box">
-                <img src="MH-website-logo-package/MH-logo-transparent.png" alt="MH Trade Capital Solutions Logo" class="brand-logo-img">
-              </div>
-              <div class="brand-logo-text">
-                <span class="brand-logo-row1">MH TRADE CAPITAL</span>
-                <span class="brand-logo-row2">SOLUTIONS</span>
-              </div>
-            </a>
-            <p>MH Trade Capital Solutions is a Dubai-based B2B trade finance, commodity sourcing, project funding, and UAE corporate banking facilitation platform.</p>
-            <div style="display: flex; gap: 12px; margin-top: 16px;">
-              <a href="#" style="color: var(--gold-primary);"><i class="fab fa-linkedin fa-lg"></i></a>
-              <a href="https://wa.me/?text=Hello%20MH%20Trade%20Capital" target="_blank" style="color: #25D366;"><i class="fab fa-whatsapp fa-lg"></i></a>
-              <a href="mailto:contact@mhtradecap.com" style="color: var(--gold-primary);"><i class="fas fa-envelope fa-lg"></i></a>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="footer-title">Financial Verticals</h4>
-            <ul class="footer-links-list">
-              <li><a href="#" class="open-inquiry-modal" data-vertical="lc">Trade Finance (LC / DLC)</a></li>
-              <li><a href="#" class="open-inquiry-modal" data-vertical="sblc">SBLC & Bank Guarantees</a></li>
-              <li><a href="#" class="open-inquiry-modal" data-vertical="commodity">Commodity Sourcing</a></li>
-              <li><a href="#" class="open-inquiry-modal" data-vertical="project">Project Funding</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="footer-title">UAE Services</h4>
-            <ul class="footer-links-list">
-              <li><a href="#" class="open-inquiry-modal" data-vertical="uae-banking">Corporate Bank Accounts</a></li>
-              <li><a href="#" class="open-inquiry-modal" data-vertical="uae-banking">Free Zone & Mainland Setup</a></li>
-              <li><a href="#" class="open-inquiry-modal" data-vertical="general">Dubai Commercial Desk</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="footer-title">Dubai Headquarters</h4>
-            <p style="font-size: 13px; line-height: 1.8;">
-              <i class="fas fa-building" style="color: var(--gold-primary);"></i> Dubai, United Arab Emirates<br>
-              <i class="fas fa-envelope" style="color: var(--gold-primary);"></i> contact@mhtradecap.com<br>
-              <i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Direct Desk
-            </p>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <div>&copy; MH Trade Capital Solutions. All Rights Reserved. Dubai, United Arab Emirates.</div>
-          <div>Global B2B Trade & Capital Platform</div>
-        </div>
-      </div>
-    </footer>
-
-  </div>
-
-  <!-- Interactive Early Requirement Ingestion Modal Drawer -->
-  <div class="modal-overlay" id="inquiry-modal">
-    <div class="modal-card">
-      <button class="modal-close close-modal">&times;</button>
-      
-      <!-- Modal Form Container -->
-      <div id="modal-form-container">
-        <h2 style="font-size: 26px; margin-bottom: 6px;">Submit Trade <span style="color: var(--gold-primary);">Requirement</span></h2>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Submit your requirement directly to our Dubai operational desk to receive your tracking Request ID.</p>
-
-        <form id="inquiry-form">
-          <div class="form-group">
-            <label class="form-label" for="req-vertical">Requirement Category *</label>
-            <select class="form-control" name="vertical" id="req-vertical" required>
-              <option value="lc">Trade Finance — Letter of Credit (LC / DLC / UPAS)</option>
-              <option value="sblc">Trade Finance — SBLC / Bank Guarantee (BG)</option>
-              <option value="commodity">Commodity Sourcing (Energy, Agri, Metals)</option>
-              <option value="project">Project & Infrastructure Finance</option>
-              <option value="uae-banking">UAE Business & Corporate Banking Setup</option>
-              <option value="general">General B2B Inquiry</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="req-name">Full Name *</label>
-              <input type="text" class="form-control" name="name" id="req-name" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="req-company">Company Name</label>
-              <input type="text" class="form-control" name="company" id="req-company" placeholder="Global Trade Corp">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="req-email">Work Email *</label>
-              <input type="email" class="form-control" name="email" id="req-email" placeholder="john@company.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="req-phone">Phone / WhatsApp</label>
-              <input type="tel" class="form-control" name="phone" id="req-phone" placeholder="+971 50 000 0000">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="req-details">Requirement Specifications</label>
-            <textarea class="form-control" name="details" id="req-details" rows="3" placeholder="Target instrument amount, commodity tonnage, origin/destination preferences..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="req-doc">Attach Specification PDF / Document (Optional)</label>
-            <input type="file" class="form-control" name="doc" id="req-doc" accept=".pdf,.doc,.docx,.png,.jpg">
-          </div>
-
-          <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; height: 50px; margin-top: 10px;">
-            <i class="fas fa-paper-plane"></i> Submit Requirement & Receive Request ID
-          </button>
-        </form>
-      </div>
-
-      <!-- Modal Success Screen Container -->
-      <div id="modal-success-container" style="display: none;">
-        <div class="success-card">
-          <div class="success-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <h2 style="font-size: 26px; margin-bottom: 8px;">Requirement Submitted!</h2>
-          <p style="color: var(--text-muted); font-size: 14px;">Your trade requirement has been assigned a unique sequential tracking ID:</p>
-          
-          <div class="id-badge-big" id="assigned-request-id">MH-LC-00001</div>
-
-          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">Our Dubai operational desk will review your specifications and contact you via email/WhatsApp shortly.</p>
-          
-          <button type="button" class="btn-gold close-modal" style="justify-content: center; width: 100%;">
-            <i class="fas fa-check"></i> Done
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Floating Back to Top Button -->
-  <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- JavaScript -->
-  <script src="js/main.js"></script>
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
