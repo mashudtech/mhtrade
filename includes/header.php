@@ -78,13 +78,12 @@ $isHeroViewport = isset($isHeroViewport) ? $isHeroViewport : false;
           <div class="container navbar">
             <a href="index.php" class="brand-logo-link">
               <div class="brand-logo-img-box">
-                <img src="images/logo/MH-logo-icon-512.png" alt="MH Trade Capital Solutions Logo"
-                  class="brand-logo-img">
+                <img src="images/logo/mh_logo_temp.png" alt="MH Trade Capital Solutions Logo" class="brand-logo-img">
               </div>
-              <div class="brand-logo-text">
+              <!-- <div class="brand-logo-text">
                 <span class="brand-logo-row1">MH TRADE CAPITAL</span>
                 <span class="brand-logo-row2">SOLUTIONS</span>
-              </div>
+              </div> -->
             </a>
 
             <ul class="nav-links">
