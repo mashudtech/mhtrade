@@ -2,20 +2,21 @@
 $pageTitle = "How Our Requirement Engine Works | MH Trade Capital Solutions Dubai";
 $pageDesc = "Discover how MH Trade Capital Solutions processes B2B trade finance, LC/SBLC issuance, commodity sourcing, and Dubai corporate banking through our frictionless execution engine.";
 $activePage = "how-it-works";
+$pageHeroBg = "images/hero/dubai_hero_bg.png";
 include 'includes/header.php';
 ?>
 
     <!-- Page Hero Banner -->
-    <section class="page-hero-section">
+    <section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.93) 0%, rgba(10, 25, 47, 0.95) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
       <div class="container">
-        <div class="hero-tag" style="margin: 0 auto 16px; display: inline-flex;">
+        <div class="hero-tag" style="margin: 0 0 16px; display: inline-flex;">
           <i class="fas fa-gears"></i> Non-Date Tracking Requirement Architecture
         </div>
         <h1 class="page-hero-title">Frictionless Requirement Engine</h1>
         <p class="page-hero-desc">
           How MH Trade Capital Solutions ingests, evaluates, matches, and executes high-value B2B trade requirements with institutional precision from Dubai.
         </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <div style="display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap;">
           <button class="btn-gold open-inquiry-modal" data-vertical="general">
             <i class="fas fa-paper-plane"></i> Initiate Trade Requirement
           </button>
@@ -104,11 +105,12 @@ include 'includes/header.php';
           Select a vertical below to simulate how our engine formats your confidential non-date tracking reference ID in real time.
         </p>
         <div style="display: flex; gap: 16px; justify-content: center; align-items: center; max-width: 540px; margin: 0 auto; flex-wrap: wrap;">
-          <select id="sim-vertical-select" class="ingestion-select" style="max-width: 320px;">
-            <option value="LC">Trade Finance — LC / SBLC</option>
-            <option value="COMM">Commodity Sourcing</option>
+          <select id="sim-vertical-select" class="ingestion-select" style="max-width: 360px;">
+            <option value="LC">Trade Finance & Banking Instruments</option>
+            <option value="UAE">UAE Business Setup & Corporate Banking</option>
             <option value="PROJ">Project Finance</option>
-            <option value="UAE">UAE Business & Banking</option>
+            <option value="COMM">Commodity Trade Solutions</option>
+            <option value="GEN">General Business Inquiry</option>
           </select>
           <div id="sim-id-display" class="sample-id-tag" style="font-size: 18px; padding: 12px 24px;">MH-LC-00842</div>
         </div>
