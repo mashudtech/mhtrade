@@ -7,7 +7,7 @@ include 'includes/header.php';
 ?>
 
     <!-- Page Hero Banner -->
-    <section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.93) 0%, rgba(10, 25, 47, 0.95) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
+    <section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.40) 0%, rgba(10, 25, 47, 0.40) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
       <div class="container">
         <div class="hero-tag" style="margin: 0 0 16px; display: inline-flex;">
           <i class="fas fa-gears"></i> Non-Date Tracking Requirement Architecture

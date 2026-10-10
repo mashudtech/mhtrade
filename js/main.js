@@ -36,6 +36,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Global Mobile Navigation Toggle Function
+  window.toggleMobileMenu = function() {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+    if (!navLinks) return;
+    
+    navLinks.classList.toggle('mobile-active');
+    const icon = mobileNavToggle ? mobileNavToggle.querySelector('i') : null;
+    if (navLinks.classList.contains('mobile-active')) {
+      if (icon) {
+        icon.className = 'fas fa-xmark';
+      }
+    } else {
+      if (icon) {
+        icon.className = 'fas fa-bars';
+      }
+    }
+  };
+
+  // Mobile Navigation Menu Toggle Event Listener
+  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+  mobileNavToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    window.toggleMobileMenu();
+  });
+
+  // Mobile Dropdown Toggle Handler
+  const dropdownNavItems = document.querySelectorAll('.nav-item');
+  dropdownNavItems.forEach(item => {
+    const link = item.querySelector('.nav-link');
+    const dropdown = item.querySelector('.dropdown-menu');
+    if (dropdown) {
+      link?.addEventListener('click', (e) => {
+        if (window.innerWidth <= 992) {
+          e.preventDefault();
+          dropdown.classList.toggle('mobile-open');
+        }
+      });
+    }
+  });
+
   // Verticals Slider Controls Handler (Unlimited Infinite Loop + Auto-Play)
   const verticalsGridWrapper = document.querySelector('.verticals-grid-wrapper');
   const verticalsPrevBtn = document.getElementById('verticals-prev');

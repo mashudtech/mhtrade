@@ -7,7 +7,7 @@ include 'includes/header.php';
 ?>
 
     <!-- Page Hero Banner -->
-    <section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.93) 0%, rgba(10, 25, 47, 0.95) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
+    <section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.40) 0%, rgba(10, 25, 47, 0.40) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
       <div class="container">
         <div class="hero-tag" style="margin: 0 0 16px; display: inline-flex;">
           <i class="fas fa-building-columns"></i> Corporate Profile & Company Overview
@@ -86,27 +86,27 @@ include 'includes/header.php';
       </section>
 
       <!-- Core Philosophy Banner & Global Market Reach Grid -->
-      <div style="margin: 30px 0 70px;">
-        <div class="section-header text-center" style="margin-bottom: 40px;">
+      <div style="margin: 30px 0 60px;">
+        <div class="section-header text-center" style="margin-bottom: 36px;">
           <div class="section-subtitle" style="letter-spacing: 2px;">Core Philosophy</div>
-          <h2 class="section-title" style="font-size: 32px; letter-spacing: 1px; max-width: 900px; margin: 0 auto 12px;">
+          <h2 class="section-title core-philosophy-title">
             CONNECTING MARKETS. CREATING VALUE. BUILDING FUTURES.
           </h2>
           <p class="section-desc">Strategic financial facilitation connecting international commercial hubs from Dubai, United Arab Emirates.</p>
         </div>
 
-        <div class="advantage-cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+        <div class="core-philosophy-grid">
           
           <div class="advantage-card">
             <div class="advantage-icon"><i class="fas fa-globe"></i></div>
-            <h3 style="font-size: 22px;">Global Market Reach</h3>
-            <p style="font-size: 15px; line-height: 1.65;">Supporting cross-border business and commercial activity across international markets.</p>
+            <h3 style="font-size: 20px;">Global Market Reach</h3>
+            <p style="font-size: 14.5px; line-height: 1.65;">Supporting cross-border business and commercial activity across international markets.</p>
           </div>
 
           <div class="advantage-card">
             <div class="advantage-icon"><i class="fas fa-location-dot"></i></div>
-            <h3 style="font-size: 22px;">Dubai-Based</h3>
-            <p style="font-size: 15px; line-height: 1.65;">Strategically positioned in Dubai, a global hub connecting Asia, Africa, Europe and the Middle East.</p>
+            <h3 style="font-size: 20px;">Dubai-Based</h3>
+            <p style="font-size: 14.5px; line-height: 1.65;">Strategically positioned in Dubai, a global hub connecting Asia, Africa, Europe and the Middle East.</p>
           </div>
 
         </div>

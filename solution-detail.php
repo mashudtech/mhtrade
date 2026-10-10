@@ -13,7 +13,7 @@ include 'includes/header.php';
 ?>
 
 <!-- Page Hero Banner -->
-<section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.93) 0%, rgba(10, 25, 47, 0.95) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
+<section class="page-hero-section" style="background-image: linear-gradient(180deg, rgba(7, 15, 30, 0.40) 0%, rgba(10, 25, 47, 0.40) 100%), url('<?php echo htmlspecialchars($pageHeroBg); ?>');">
   <div class="container">
     <div class="hero-tag" style="margin: 0 0 16px; display: inline-flex;">
       <i class="fas fa-layer-group"></i> Solution <?php echo $sol['num']; ?> — <?php echo htmlspecialchars($sol['title']); ?>
@@ -43,7 +43,7 @@ include 'includes/header.php';
 </section>
 
 <!-- Main Detail Content -->
-<main class="container" style="padding: 70px 24px; max-width: 1040px;">
+<main class="container" style="padding: 70px 24px; max-width: 1240px;">
 
   <!-- Executive Overview Section -->
   <section style="margin-bottom: 60px;">
@@ -75,51 +75,35 @@ include 'includes/header.php';
 
   <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 50px 0;">
 
-  <!-- Paragraph-by-Paragraph Capability Details Section -->
+  <!-- Paragraph-by-Paragraph Capability Details Section (3-Card Grid Layout) -->
   <section style="margin-bottom: 70px;">
     <div class="section-subtitle">Detailed Breakdown</div>
     <h2 class="section-title" style="font-size: 30px; margin-bottom: 40px;">Structured Specifications</h2>
 
-    <div style="display: flex; flex-direction: column; gap: 48px;">
-      <?php foreach ($sol['items'] as $index => $item): ?>
-        <article style="position: relative;">
-          <!-- Item Number & Title -->
-          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;">
-            <span style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; color: var(--gold-primary); flex-shrink: 0;">
-              <?php echo htmlspecialchars($item['num']); ?> —
-            </span>
-            <h3 style="font-size: 24px; color: #FFFFFF; font-weight: 700; font-family: 'Outfit', sans-serif; margin: 0;">
-              <?php echo htmlspecialchars($item['title']); ?>
-            </h3>
+    <div class="solution-breakdown-grid">
+      <?php foreach ($sol['items'] as $item): ?>
+        <article class="solution-item-card">
+          <!-- Card Header: Title & Subtitle -->
+          <div class="solution-card-header">
+            <h3 class="solution-card-title"><?php echo htmlspecialchars($item['title']); ?></h3>
+            <h4 class="solution-card-subtitle"><?php echo htmlspecialchars($item['subtitle']); ?></h4>
           </div>
 
-          <!-- Subtitle Tagline -->
-          <h4 style="font-size: 15px; color: var(--gold-primary); font-weight: 600; margin-bottom: 16px; font-family: var(--font-body);">
-            <?php echo htmlspecialchars($item['subtitle']); ?>
-          </h4>
+          <!-- Card Body: Description & Details -->
+          <div class="solution-card-body">
+            <p class="solution-card-desc"><?php echo htmlspecialchars($item['desc']); ?></p>
 
-          <!-- Primary Description Paragraph -->
-          <p style="font-size: 16px; color: #E2E8F0; line-height: 1.75; margin-bottom: 14px;">
-            <?php echo htmlspecialchars($item['desc']); ?>
-          </p>
+            <?php if (!empty($item['details'])): ?>
+              <p class="solution-card-details"><?php echo htmlspecialchars($item['details']); ?></p>
+            <?php endif; ?>
 
-          <!-- Extended Details Paragraph -->
-          <?php if (!empty($item['details'])): ?>
-            <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
-              <?php echo htmlspecialchars($item['details']); ?>
-            </p>
-          <?php endif; ?>
-
-          <!-- Simple Summary Paragraph Note -->
-          <?php if (!empty($item['summary'])): ?>
-            <p style="font-size: 14.5px; color: #F3E5AB; line-height: 1.6; font-style: italic; background: rgba(212, 175, 55, 0.06); padding: 12px 18px; border-left: 2px solid var(--gold-primary); border-radius: 0 8px 8px 0; margin-top: 12px;">
-              <strong style="color: var(--gold-primary); font-style: normal;">Summary:</strong> <?php echo htmlspecialchars(str_replace('In simple terms: ', '', $item['summary'])); ?>
-            </p>
-          <?php endif; ?>
-
-          <?php if ($index < count($sol['items']) - 1): ?>
-            <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.07); margin-top: 40px; margin-bottom: 0;">
-          <?php endif; ?>
+            <!-- Card Footer: Summary Box -->
+            <?php if (!empty($item['summary'])): ?>
+              <div class="solution-card-summary">
+                <strong style="color: var(--gold-primary); font-style: normal;">Summary:</strong> <?php echo htmlspecialchars(str_replace('In simple terms: ', '', $item['summary'])); ?>
+              </div>
+            <?php endif; ?>
+          </div>
         </article>
       <?php endforeach; ?>
     </div>

@@ -5,7 +5,7 @@
       <div class="footer-brand">
         <a href="index.php" class="brand-logo-link" style="margin-bottom: 16px;">
           <div class="brand-logo-img-box">
-            <img src="images/logo/mh_logo_temp.png" alt="MH Trade Capital Solutions Logo" class="brand-logo-img">
+            <img src="images/logo/main-logo.png" alt="MH Trade Capital Solutions Logo" class="brand-logo-img">
           </div>
           <!-- <div class="brand-logo-text">
             <span class="brand-logo-row1">MH TRADE CAPITAL</span>
