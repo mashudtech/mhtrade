@@ -2,7 +2,7 @@
 $pageTitle = "Contact Us | Dubai Operational Desk — MH Trade Capital Solutions";
 $pageDesc = "Get in touch with MH Trade Capital Solutions in Dubai, UAE. Contact our capital desk for trade finance, banking setup, project funding, and commodity sourcing requirements.";
 $activePage = "contact";
-$pageHeroBg = "images/hero/dubai_hero_bg.png";
+$pageHeroBg = "images/hero/dubai_hero_bg.webp";
 include 'includes/header.php';
 ?>
 

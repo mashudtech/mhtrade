@@ -74,8 +74,7 @@ include 'includes/header.php';
             style="text-decoration: none; display: flex; flex-direction: column; cursor: pointer;">
             <div class="v-card-img-wrapper">
               <img src="<?php echo htmlspecialchars($sol['image']); ?>"
-                alt="<?php echo htmlspecialchars($sol['title']); ?>" class="v-card-img">
-              <div class="v-card-badge"><?php echo htmlspecialchars($sol['num']); ?> — Solution</div>
+                alt="<?php echo htmlspecialchars($sol['title']); ?>" class="v-card-img" loading="lazy" decoding="async">
             </div>
             <div class="v-card-body" style="display: flex; flex-direction: column; flex: 1;">
               <h3 class="v-title" style="font-size: 20px; color: #FFFFFF; margin-bottom: 10px;">
@@ -196,7 +195,7 @@ include 'includes/header.php';
         </div>
 
         <div class="about-img-container">
-          <img src="images/about_us_dubai.png" alt="MH Trade Capital Solutions Boardroom Dubai" class="about-img">
+          <img src="images/about_us_dubai.webp" alt="MH Trade Capital Solutions Boardroom Dubai" class="about-img" loading="lazy" decoding="async">
           <div class="about-experience-badge">
             <div class="about-badge-icon"><i class="fas fa-award"></i></div>
             <div class="about-badge-text">

@@ -161,8 +161,8 @@
   <i class="fas fa-chevron-up"></i>
 </button>
 
-<!-- JavaScript -->
-<script src="js/main.js"></script>
+<!-- JavaScript (with automatic cache buster) -->
+<script src="js/main.js?v=<?php echo file_exists(__DIR__ . '/../js/main.js') ? filemtime(__DIR__ . '/../js/main.js') : '1.0.0'; ?>"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 $pageTitle = "About Us | MH Trade Capital Solutions Dubai";
 $pageDesc = "Learn about MH Trade Capital Solutions — Dubai-based trade and capital solutions firm supporting international businesses with trade finance, banking solutions, commodity trade assistance and structured financing requirements.";
 $activePage = "about";
-$pageHeroBg = "images/about_us_dubai.png";
+$pageHeroBg = "images/about_us_dubai.webp";
 include 'includes/header.php';
 ?>
 
@@ -73,7 +73,7 @@ include 'includes/header.php';
 
           <!-- Image & Experience Card -->
           <div class="about-img-container">
-            <img src="images/about_us_dubai.png" alt="MH Trade Capital Solutions Boardroom" class="about-img">
+            <img src="images/about_us_dubai.webp" alt="MH Trade Capital Solutions Boardroom" class="about-img" loading="lazy" decoding="async">
             <div class="about-experience-badge">
               <div class="about-badge-icon"><i class="fas fa-landmark"></i></div>
               <div class="about-badge-text">

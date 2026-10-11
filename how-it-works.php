@@ -2,7 +2,7 @@
 $pageTitle = "How Our Requirement Engine Works | MH Trade Capital Solutions Dubai";
 $pageDesc = "Discover how MH Trade Capital Solutions processes B2B trade finance, LC/SBLC issuance, commodity sourcing, and Dubai corporate banking through our frictionless execution engine.";
 $activePage = "how-it-works";
-$pageHeroBg = "images/hero/dubai_hero_bg.png";
+$pageHeroBg = "images/hero/dubai_hero_bg.webp";
 include 'includes/header.php';
 ?>
 

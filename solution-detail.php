@@ -8,7 +8,7 @@ $sol = $allSolutions[$id];
 $pageTitle = $sol['title'] . " | MH Trade Capital Solutions Dubai";
 $pageDesc = $sol['shortDesc'];
 $activePage = "solutions";
-$pageHeroBg = !empty($sol['image']) ? $sol['image'] : 'images/hero/dubai_hero_bg.png';
+$pageHeroBg = !empty($sol['image']) ? $sol['image'] : 'images/hero/dubai_hero_bg.webp';
 include 'includes/header.php';
 ?>
 

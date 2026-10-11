@@ -2,7 +2,7 @@
 $pageTitle = "Why MH | Transaction First. Structure Second. Banking Third — MH Trade Capital Solutions";
 $pageDesc = "Discover why international businesses choose MH Trade Capital Solutions — Transaction-focused trade finance, global banking relationships, structured execution, and the strategic Dubai advantage.";
 $activePage = "why-mh";
-$pageHeroBg = "images/hero/dubai_hero_bg.png";
+$pageHeroBg = "images/hero/dubai_hero_bg.webp";
 include 'includes/header.php';
 ?>
 

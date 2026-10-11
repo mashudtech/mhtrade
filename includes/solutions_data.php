@@ -12,7 +12,7 @@ function getSolutionsData() {
             'heroHeadline' => 'DON\'T JUST ASK FOR A FINANCIAL INSTRUMENT.<br><span style="color: var(--gold-primary);">UNDERSTAND THE TRANSACTION FIRST.</span>',
             'badge' => 'LC • DLC • UPAS LC • Usance LC • SBLC • BG • PG • APG • Tender Guarantee • BCL • POF • RWA • SWIFT-Related Instruments',
             'tags' => ['LC / DLC', 'SBLC / BG', 'PG / APG', 'BCL / POF / RWA'],
-            'image' => 'images/verticals/trade_finance.png',
+            'image' => 'images/verticals/trade_finance.webp',
             'shortDesc' => 'Trade finance structuring and applicable banking instruments for eligible commercial ...',
             'overview' => 'Trade finance structuring and applicable banking instruments for eligible commercial transactions, subject to transaction assessment, compliance requirements and the final approval of the relevant bank or financial institution.',
             'items' => [
@@ -199,7 +199,7 @@ function getSolutionsData() {
             'heroHeadline' => 'QUALIFIED COMMODITY SOURCING & <br><span style="color: var(--gold-primary);">INTERNATIONAL TRADE FACILITATION</span>',
             'badge' => 'Sugar • Rice • Spices • Crude Oil • Cooking Oil • Gold • Bitcoin & Selected Digital Assets',
             'tags' => ['Energy & Agri', 'Precious Metals', 'Soft Commodities', 'Digital Assets'],
-            'image' => 'images/verticals/commodity.png',
+            'image' => 'images/verticals/commodity.webp',
             'shortDesc' => 'Support for qualified commodity transactions, including sourcing, trade structuring, transaction coordination ...',
             'overview' => 'Support for qualified commodity transactions, including sourcing, trade structuring, transaction coordination and related financial requirements across international markets.',
             'items' => [
@@ -269,7 +269,7 @@ function getSolutionsData() {
             'heroHeadline' => 'UAE-BASED SOURCING, PROCUREMENT & <br><span style="color: var(--gold-primary);">COMMERCIAL DELIVERY SUPPORT</span>',
             'badge' => 'UAE-BASED SOURCING • PROCUREMENT • PRODUCT SUPPLY • DELIVERY SUPPORT',
             'tags' => ['UAE Sourcing', 'Procurement', 'Product Supply', 'Delivery Support'],
-            'image' => 'images/verticals/supply_chain.png',
+            'image' => 'images/verticals/supply_chain.webp',
             'shortDesc' => 'Need a specific product or business requirement from the UAE? We assist with sourcing and procurement ...',
             'overview' => 'Need a specific product or business requirement from the UAE? We assist with sourcing and procurement—from individual items and small quantities to bulk commercial and industrial requirements. From electronics and equipment to machinery, engines and industrial products, we help identify suitable UAE suppliers and coordinate delivery according to your requirements.',
             'highlightBanner' => 'Small or large — if it is commercially available in the UAE, we can help you source it.',

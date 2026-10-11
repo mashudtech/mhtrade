@@ -6,7 +6,7 @@ $allSolutions = getSolutionsData();
 $pageTitle = "Our Core Capabilities & Solutions | MH Trade Capital Solutions Dubai";
 $pageDesc = "Explore all 5 core business capabilities of MH Trade Capital Solutions — Trade Finance, UAE Corporate Banking, Project Finance, Commodity Sourcing, and General Business Procurement.";
 $activePage = "solutions";
-$pageHeroBg = "images/hero/dubai_hero_bg.png";
+$pageHeroBg = "images/hero/dubai_hero_bg.webp";
 include 'includes/header.php';
 ?>
 
@@ -44,8 +44,7 @@ include 'includes/header.php';
     <?php foreach ($allSolutions as $solId => $sol): ?>
       <a href="solution-detail.php?id=<?php echo htmlspecialchars($solId); ?>" class="vertical-card" style="text-decoration: none; display: flex; flex-direction: column; cursor: pointer;">
         <div class="v-card-img-wrapper">
-          <img src="<?php echo htmlspecialchars($sol['image']); ?>" alt="<?php echo htmlspecialchars($sol['title']); ?>" class="v-card-img">
-          <div class="v-card-badge"><?php echo htmlspecialchars($sol['num']); ?> — Solution</div>
+          <img src="<?php echo htmlspecialchars($sol['image']); ?>" alt="<?php echo htmlspecialchars($sol['title']); ?>" class="v-card-img" loading="lazy" decoding="async">
         </div>
         <div class="v-card-body" style="display: flex; flex-direction: column; flex: 1; justify-content: space-between;">
           <div>

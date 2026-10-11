@@ -11,23 +11,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Animated Background Canvas
   initBackgroundCanvas();
 
-  // Header Scroll Effect & Back-to-Top Button Toggle
+  // Header Scroll Effect & Back-to-Top Button Toggle (Throttled 60fps)
   const header = document.querySelector('.main-header');
   const backToTopBtn = document.getElementById('back-to-top');
+  let scrollTicking = false;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        if (scrollY > 40) {
+          header?.classList.add('scrolled');
+        } else {
+          header?.classList.remove('scrolled');
+        }
 
-    if (window.scrollY > 300) {
-      backToTopBtn?.classList.add('visible');
-    } else {
-      backToTopBtn?.classList.remove('visible');
+        if (scrollY > 300) {
+          backToTopBtn?.classList.add('visible');
+        } else {
+          backToTopBtn?.classList.remove('visible');
+        }
+        scrollTicking = false;
+      });
+      scrollTicking = true;
     }
-  });
+  }, { passive: true });
 
   backToTopBtn?.addEventListener('click', () => {
     window.scrollTo({
@@ -36,41 +44,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
   // Global Mobile Navigation Toggle Function
-  window.toggleMobileMenu = function() {
-    const navLinks = document.querySelector('.nav-links');
-    const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+
+  window.toggleMobileMenu = function(forceState) {
     if (!navLinks) return;
     
-    navLinks.classList.toggle('mobile-active');
-    const icon = mobileNavToggle ? mobileNavToggle.querySelector('i') : null;
-    if (navLinks.classList.contains('mobile-active')) {
-      if (icon) {
-        icon.className = 'fas fa-xmark';
-      }
+    const shouldOpen = (typeof forceState === 'boolean')
+      ? forceState
+      : !navLinks.classList.contains('mobile-active');
+
+    if (shouldOpen) {
+      navLinks.classList.add('mobile-active');
     } else {
+      navLinks.classList.remove('mobile-active');
+    }
+
+    if (mobileNavToggle) {
+      mobileNavToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      const icon = mobileNavToggle.querySelector('i');
       if (icon) {
-        icon.className = 'fas fa-bars';
+        icon.className = shouldOpen ? 'fas fa-xmark' : 'fas fa-bars';
       }
     }
   };
 
   // Mobile Navigation Menu Toggle Event Listener
-  const mobileNavToggle = document.getElementById('mobile-nav-toggle');
   mobileNavToggle?.addEventListener('click', (e) => {
+    e.preventDefault();
     e.stopPropagation();
     window.toggleMobileMenu();
   });
 
-  // Mobile Dropdown Toggle Handler
+  // Close mobile navigation when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks && navLinks.classList.contains('mobile-active')) {
+      if (!navLinks.contains(e.target) && !mobileNavToggle?.contains(e.target)) {
+        window.toggleMobileMenu(false);
+      }
+    }
+  });
+
+  // Mobile Dropdown Toggle Handler (e.g. Solutions)
   const dropdownNavItems = document.querySelectorAll('.nav-item');
   dropdownNavItems.forEach(item => {
     const link = item.querySelector('.nav-link');
     const dropdown = item.querySelector('.dropdown-menu');
-    if (dropdown) {
-      link?.addEventListener('click', (e) => {
+    if (dropdown && link) {
+      link.addEventListener('click', (e) => {
         if (window.innerWidth <= 992) {
           e.preventDefault();
+          e.stopPropagation();
           dropdown.classList.toggle('mobile-open');
         }
       });
@@ -118,21 +157,48 @@ document.addEventListener('DOMContentLoaded', () => {
     resetAutoSlide();
   });
 
-  // Auto-slide loop every 4 seconds
-  let autoSlideTimer = setInterval(slideNext, 4000);
+  // Verticals auto-slide (runs only when in viewport)
+  let autoSlideTimer = null;
 
-  function resetAutoSlide() {
-    clearInterval(autoSlideTimer);
-    autoSlideTimer = setInterval(slideNext, 4000);
+  function startAutoSlide() {
+    if (autoSlideTimer) return;
+    autoSlideTimer = setInterval(slideNext, 4500);
   }
 
-  // Pause auto-slide when hovering over slider or controls
-  verticalsGridWrapper?.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
-  verticalsGridWrapper?.addEventListener('mouseleave', () => resetAutoSlide());
-  verticalsGridWrapper?.addEventListener('touchstart', () => clearInterval(autoSlideTimer), { passive: true });
-  verticalsGridWrapper?.addEventListener('touchend', () => resetAutoSlide());
+  function stopAutoSlide() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
 
-  // Testimonials Single-Item Slider Handler (Infinite Loop + Auto-Play)
+  function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+  }
+
+  if (verticalsGridWrapper && 'IntersectionObserver' in window) {
+    const verticalsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startAutoSlide();
+        } else {
+          stopAutoSlide();
+        }
+      });
+    }, { threshold: 0.15 });
+    verticalsObserver.observe(verticalsGridWrapper);
+  } else {
+    startAutoSlide();
+  }
+
+  // Pause auto-slide when interacting with slider
+  verticalsGridWrapper?.addEventListener('mouseenter', stopAutoSlide);
+  verticalsGridWrapper?.addEventListener('mouseleave', startAutoSlide);
+  verticalsGridWrapper?.addEventListener('touchstart', stopAutoSlide, { passive: true });
+  verticalsGridWrapper?.addEventListener('touchend', startAutoSlide);
+
+  // Testimonials Single-Item Slider Handler (Infinite Loop + Viewport-Aware Auto-Play)
   const testimonialTrack = document.getElementById('testimonials-track');
   const testimonialPrevBtn = document.getElementById('testimonial-prev');
   const testimonialNextBtn = document.getElementById('testimonial-next');
@@ -172,23 +238,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Auto-play infinite loop every 5 seconds
-  let testimonialTimer = setInterval(() => {
-    updateTestimonialSlide(currentTestimonialIndex + 1);
-  }, 5000);
+  // Testimonials auto-play (runs only when in viewport)
+  let testimonialTimer = null;
 
-  function resetTestimonialAutoSlide() {
-    clearInterval(testimonialTimer);
+  function startTestimonialAutoSlide() {
+    if (testimonialTimer) return;
     testimonialTimer = setInterval(() => {
       updateTestimonialSlide(currentTestimonialIndex + 1);
-    }, 5000);
+    }, 5500);
+  }
+
+  function stopTestimonialAutoSlide() {
+    if (testimonialTimer) {
+      clearInterval(testimonialTimer);
+      testimonialTimer = null;
+    }
+  }
+
+  function resetTestimonialAutoSlide() {
+    stopTestimonialAutoSlide();
+    startTestimonialAutoSlide();
   }
 
   const testimonialWrapper = document.querySelector('.testimonials-slider-wrapper');
-  testimonialWrapper?.addEventListener('mouseenter', () => clearInterval(testimonialTimer));
-  testimonialWrapper?.addEventListener('mouseleave', () => resetTestimonialAutoSlide());
-  testimonialWrapper?.addEventListener('touchstart', () => clearInterval(testimonialTimer), { passive: true });
-  testimonialWrapper?.addEventListener('touchend', () => resetTestimonialAutoSlide());
+  if (testimonialWrapper && 'IntersectionObserver' in window) {
+    const testimonialObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startTestimonialAutoSlide();
+        } else {
+          stopTestimonialAutoSlide();
+        }
+      });
+    }, { threshold: 0.15 });
+    testimonialObserver.observe(testimonialWrapper);
+  } else {
+    startTestimonialAutoSlide();
+  }
+
+  testimonialWrapper?.addEventListener('mouseenter', stopTestimonialAutoSlide);
+  testimonialWrapper?.addEventListener('mouseleave', startTestimonialAutoSlide);
+  testimonialWrapper?.addEventListener('touchstart', stopTestimonialAutoSlide, { passive: true });
+  testimonialWrapper?.addEventListener('touchend', startTestimonialAutoSlide);
 
   // Modal Drawer Elements
   const modalOverlay = document.getElementById('inquiry-modal');
@@ -281,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${prefix}-${randomSeq}`;
   }
 
-  // Dynamic Background Canvas — Global Financial Constellation Network
+  // Dynamic Background Canvas — High-Performance Financial Constellation Network
   function initBackgroundCanvas() {
     const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
@@ -290,25 +381,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
-    let mouse = { x: null, y: null, radius: 180 };
+    let mouse = { x: null, y: null, radius: 170 };
+    let resizeTimer;
 
     window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }, 150);
+    }, { passive: true });
 
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    });
+    }, { passive: true });
 
     window.addEventListener('mouseleave', () => {
       mouse.x = null;
       mouse.y = null;
-    });
+    }, { passive: true });
 
-    // Create dynamic nodes based on screen resolution
-    const numNodes = Math.min(Math.floor(width / 18), 70);
+    // Adaptive node count based on screen size for optimal 60fps performance
+    const isMobile = width < 768;
+    const numNodes = isMobile ? 22 : Math.min(Math.floor(width / 32), 40);
     const nodes = [];
 
     for (let i = 0; i < numNodes; i++) {
@@ -316,77 +412,94 @@ document.addEventListener('DOMContentLoaded', () => {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.55,
-        vy: (Math.random() - 0.5) * 0.55,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
         radius: isMajorHub ? Math.random() * 2 + 2.5 : Math.random() * 1.5 + 1.2,
         isMajorHub: isMajorHub,
-        pulseAngle: Math.random() * Math.PI * 2,
-        color: isMajorHub ? '#F59E0B' : '#D4AF37'
+        pulseAngle: Math.random() * Math.PI * 2
       });
     }
 
+    const maxDist = 160;
+    const maxDistSq = maxDist * maxDist;
+    let isPaused = false;
+
+    document.addEventListener('visibilitychange', () => {
+      isPaused = document.hidden;
+      if (!isPaused) {
+        requestAnimationFrame(animate);
+      }
+    });
+
     function animate() {
+      if (isPaused) return;
+
       ctx.clearRect(0, 0, width, height);
 
-      // Draw & update nodes
+      // 1. Update node positions & draw nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.x += n.vx;
         n.y += n.vy;
-        n.pulseAngle += 0.03;
+        n.pulseAngle += 0.025;
 
         if (n.x < 0 || n.x > width) n.vx *= -1;
         if (n.y < 0 || n.y > height) n.vy *= -1;
 
-        // Pulse effect for major hub nodes
         let currentRadius = n.radius;
         if (n.isMajorHub) {
-          currentRadius += Math.sin(n.pulseAngle) * 0.8;
+          currentRadius += Math.sin(n.pulseAngle) * 0.7;
+
+          // Draw soft hardware-accelerated outer aura (no expensive shadowBlur)
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, currentRadius * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(245, 158, 11, 0.16)';
+          ctx.fill();
         }
 
-        // Draw node glow
-        ctx.save();
+        // Draw core node
         ctx.beginPath();
         ctx.arc(n.x, n.y, Math.max(0.5, currentRadius), 0, Math.PI * 2);
-        ctx.fillStyle = n.isMajorHub ? 'rgba(245, 158, 11, 0.85)' : 'rgba(212, 175, 55, 0.65)';
-        if (n.isMajorHub) {
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = 'rgba(245, 158, 11, 0.7)';
-        }
+        ctx.fillStyle = n.isMajorHub ? 'rgba(245, 158, 11, 0.9)' : 'rgba(212, 175, 55, 0.65)';
         ctx.fill();
-        ctx.restore();
 
         // Connect node to mouse if within distance
         if (mouse.x !== null && mouse.y !== null) {
-          const mDist = Math.hypot(n.x - mouse.x, n.y - mouse.y);
-          if (mDist < mouse.radius) {
-            const mAlpha = 0.5 * (1 - mDist / mouse.radius);
+          const dx = n.x - mouse.x;
+          const dy = n.y - mouse.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < mouse.radius * mouse.radius) {
+            const mDist = Math.sqrt(distSq);
+            const mAlpha = 0.45 * (1 - mDist / mouse.radius);
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.strokeStyle = `rgba(245, 158, 11, ${mAlpha})`;
-            ctx.lineWidth = 1.2;
-            ctx.stroke();
-          }
-        }
-
-        // Connect nodes to neighboring nodes
-        for (let j = i + 1; j < nodes.length; j++) {
-          const n2 = nodes[j];
-          const dist = Math.hypot(n.x - n2.x, n.y - n2.y);
-          const maxDist = 170;
-
-          if (dist < maxDist) {
-            const alpha = 0.45 * (1 - dist / maxDist);
-            ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = `rgba(212, 175, 55, ${alpha})`;
-            ctx.lineWidth = n.isMajorHub && n2.isMajorHub ? 1.2 : 0.85;
+            ctx.lineWidth = 1;
             ctx.stroke();
           }
         }
       }
+
+      // 2. Batch-draw all constellation connection lines in a single path
+      ctx.beginPath();
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const n2 = nodes[j];
+          const dx = n.x - n2.x;
+          const dy = n.y - n2.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < maxDistSq) {
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(n2.x, n2.y);
+          }
+        }
+      }
+      ctx.strokeStyle = 'rgba(212, 175, 55, 0.22)';
+      ctx.lineWidth = 0.85;
+      ctx.stroke();
 
       requestAnimationFrame(animate);
     }
